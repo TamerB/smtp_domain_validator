@@ -1,0 +1,13 @@
+<h1>Check Email</h1>
+<%= form_with scope: :validation_request, local: true do |form| %>
+  <p>
+    <%= form.label :emil %><br>
+    <%= form.text_field :email %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+     <div><%= flash[:message] %></div>
