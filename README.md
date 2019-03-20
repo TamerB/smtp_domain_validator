@@ -1,24 +1,22 @@
-# README
+# SMTP domain validator WEB
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This web app uses https://mailboxlayer.com to check if a given email has an existing SMTP domain.
 
-Things you may want to cover:
+Note: At most 5 requests per second are allowed
 
-* Ruby version
 
-* System dependencies
+* Ruby version: 2.5.5
 
-* Configuration
+* Dependencies: Run ```bundle install```
 
-* Database creation
+* Configuration: You need to add ```API_ACCESS_KEY``` to ```.env```file.
 
-* Database initialization
+* Database:
+  - This API uses PostgreSQL. So make sure it is installed and with your username as a role
+  - Run ```rails db:create```
+  - Ten run ```rails db:migrate```
+  - For production environment:
+    - Run ```rake db:create RAILS_ENV=production```
+    - Then run ```rake db:migrate RAILS_ENV=production```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Services: For now, just checking if SMTP domain exists
