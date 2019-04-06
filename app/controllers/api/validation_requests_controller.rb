@@ -1,9 +1,6 @@
-class ValidationRequestsController < ApplicationController
+class Api::ValidationRequestsController < ApplicationController
   protect_from_forgery with: :null_session
-
-  # GET /validation_requests
-  def index
-  end
+  include Response
 
   # POST /validation_requests
   def create
@@ -16,16 +13,14 @@ class ValidationRequestsController < ApplicationController
       response = email_exists() ? validate_email() : {:message => {message: "Bad Request... No email to validate!"}, :code => :bad_request}
     end
 
-    flash.now[:message] = response[:message][:message]
-
-    render "index", status: response[:code]
+    json_response(response[:message], response[:code])
   end
 
   private
 
   def email_exists
     begin
-      return (params[:email] != nil && !params[:email].blank? || params[:validation_request][:email] != nil && !params[:validation_request][:email].blank?)
+      return (params[:email] != nil && !params[:email].blank?)
     rescue
       return false
     end
